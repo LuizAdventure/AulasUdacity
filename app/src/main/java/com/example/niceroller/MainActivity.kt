@@ -1,6 +1,7 @@
 package com.example.niceroller
 
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -11,13 +12,17 @@ class MainActivity : AppCompatActivity() {
 
    lateinit var diceImage: ImageView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val rollButton: Button = findViewById(R.id.roll_button)
 
+
         rollButton.setOnClickListener {
+            var animation = AnimationUtils.loadAnimation(this,R.anim.animation)
+            diceImage.startAnimation(animation)
             Toast.makeText(this,"Você clicou no botão", Toast.LENGTH_SHORT).show()
             rollDice()
         }
@@ -34,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             5 -> R.drawable.dice_6
             else -> R.drawable.dice_6
         }
+
         diceImage.setImageResource(drawableResource)
 
 
